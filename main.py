@@ -40,10 +40,11 @@ def view_menu():
     return {"menu": [{"id": r[0], "name": r[1], "price": r[2], "stock": r[3]} for r in data]}
 
 @app.post("/menu")
-def add_menu_item(item: MenuItem):
-    cursor.execute("INSERT INTO menu (name, price, stock) VALUES (%s, %s, %s)", (item.name, item.price, item.stock))
-    conn.commit()
-    return {"message": "Menu item added successfully."}
+def add_menu_item(items: list[MenuItem]):
+    for item in items:
+        cursor.execute("INSERT INTO menu (name, price, stock) VALUES (%s, %s, %s)", (item.name, item.price, item.stock))
+        conn.commit()
+    return {"message": "Menu items added successfully."}
 
 # ==================== Order Endpoints ====================
 @app.post("/orders")
