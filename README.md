@@ -2,7 +2,8 @@
 Swagger
 https://restaurant-management-system-3-9sr5.onrender.com/docs
 
-<img width="1024" height="1536" alt="Entity-relationship and flowchart diagrams" src="https://github.com/user-attachments/assets/9064ed03-98fd-4a04-a55c-fedbf03eeff7" />
+<img width="1024" height="1536" alt="Restaurant management system diagrams (1)" src="https://github.com/user-attachments/assets/d190d0fb-f1b9-4434-8112-d036115f97bb" />
+
 
 # Restaurant Management API (FastAPI + PostgreSQL)
 
