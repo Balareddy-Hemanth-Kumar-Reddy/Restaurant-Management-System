@@ -4,10 +4,7 @@ from typing import List
 import psycopg2
 import os
 
-# ==================== Database Connection ====================
-# DATABASE_URL = "postgressql:username:password@host/database"
 DATABASE_URL = os.getenv("DATABASE_URL")
-
 
 try:
     conn = psycopg2.connect(DATABASE_URL)
@@ -17,10 +14,8 @@ except Exception as e:
     print("Error connecting to database:", e)
     exit()
 
-# ==================== FastAPI App ====================
 app = FastAPI(title="Restaurant Management API", version="1.0")
 
-# ==================== Pydantic Models ====================
 class MenuItem(BaseModel):
     name: str
     price: float
@@ -34,7 +29,6 @@ class Order(BaseModel):
     customer_name: str
     items: List[OrderItem]
 
-# ==================== Menu Endpoints ====================
 @app.get("/menu")
 def view_menu():
     cursor.execute("SELECT item_id, name, price, stock FROM menu ORDER BY item_id")
@@ -48,7 +42,6 @@ def add_menu_item(items: list[MenuItem]):
         conn.commit()
     return {"message": "Menu items added successfully."}
 
-# ==================== Order Endpoints ====================
 @app.post("/orders")
 def place_order(order: Order):
     items = []
@@ -63,8 +56,7 @@ def place_order(order: Order):
             raise HTTPException(status_code=400, detail=f"Not enough stock for item ID {i.item_id}. Available: {stock}")
         total += i.quantity * price
         items.append((i.item_id, i.quantity, price*i.quantity))
-    
-    # Insert order
+
     cursor.execute("INSERT INTO orders (customer_name, total_price) VALUES (%s, %s) RETURNING order_id", (order.customer_name, total))
     order_id = cursor.fetchone()[0]
     
