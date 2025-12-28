@@ -1,9 +1,6 @@
 
 Swagger
-https://restaurant-management-system-yena.onrender.com/docs
-
-DataBase
-postgresql://postgres:HKXXHLQBaOBztZBapCeKQSKdtGJeMRJr@shinkansen.proxy.rlwy.net:43107/railway
+http://127.0.0.1:8000/docs#/default/place_order_orders_post
 
 <img width="1024" height="1536" alt="Entity-relationship and flowchart diagrams" src="https://github.com/user-attachments/assets/9064ed03-98fd-4a04-a55c-fedbf03eeff7" />
 
