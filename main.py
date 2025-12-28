@@ -62,7 +62,7 @@ def place_order(order: Order):
         if i.quantity > stock:
             raise HTTPException(status_code=400, detail=f"Not enough stock for item ID {i.item_id}. Available: {stock}")
         total += i.quantity * price
-        items.append((i.item_id, i.quantity, price))
+        items.append((i.item_id, i.quantity, price*i.quantity))
     
     # Insert order
     cursor.execute("INSERT INTO orders (customer_name, total_price) VALUES (%s, %s) RETURNING order_id", (order.customer_name, total))
