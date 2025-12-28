@@ -5,7 +5,9 @@ import psycopg2
 import os
 
 # ==================== Database Connection ====================
+# DATABASE_URL = "postgressql:username:password@host/database"
 DATABASE_URL = os.getenv("DATABASE_URL")
+
 
 try:
     conn = psycopg2.connect(DATABASE_URL)
